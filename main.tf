@@ -9,8 +9,12 @@ terraform {
 
 provider "local" {}
 
-resource "local_file" "demo" {
-  # creates demo.txt inside the module (repo) directory
-  filename = "${path.module}/demo.txt"
-  content  = "Hello from Terraform + Jenkins!"
+resource "local_file" "my_pet" {
+  filename = var.filename
+  content  = var.content
+}
+resource "random_pet" "mypet" {
+  prefix    = "mr"
+  separator = "."
+  length    = "1"
 }
