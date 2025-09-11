@@ -9,12 +9,8 @@ terraform {
 
 provider "local" {}
 
-resource "local_file" "my_pet" {
-  filename = var.filename
-  content  = var.content
-}
-resource "random_pet" "mypet" {
-  prefix    = "mr"
-  separator = "."
-  length    = "1"
+resource "local_file" "my-pet" {
+  count = length(var.filename)
+  filename = var.filename[count.index]
+  content = "i love hen"
 }
